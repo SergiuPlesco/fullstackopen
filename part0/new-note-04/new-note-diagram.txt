@@ -1,0 +1,33 @@
+title Create new note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over Browser:
+Browser sends new note
+via POST request
+end note
+
+note over Server:
+Server redirects browser
+to /exampleapp/notes
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server->Browser: HTML Code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server->Browser: main.js
+
+note over Browser:
+Browser is executing js code
+to request JSON data from the server
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server->Browser: JSON
+
+note over Browser:
+Browser is executing the event handler
+that renders notes to page
+end note

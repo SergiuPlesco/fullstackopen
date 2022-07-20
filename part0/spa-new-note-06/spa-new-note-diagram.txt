@@ -1,0 +1,11 @@
+title Create new note SPA
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over Browser:
+Browser is executing js code
+adds the new note to the list
+and displays it on the page
+makes a POST request to send 
+new note to the server
+end note

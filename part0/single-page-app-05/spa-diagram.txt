@@ -1,0 +1,21 @@
+title Single Page App
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server->Browser: HTML Code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server->Browser: spa.js
+
+note over Browser:
+Browser is executing js code
+to request JSON data from the server
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server->Browser: JSON
+
+note over Browser:
+Browser is executing the event handler
+that renders notes on page
+end note
