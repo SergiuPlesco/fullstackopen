@@ -4,12 +4,18 @@ const Statistics = (props) => {
 	return (
 		<div>
 			<h2>Statistics</h2>
-			<p>good: {props.good}</p>
-			<p>neutral: {props.neutral}</p>
-			<p>bad: {props.bad}</p>
-			<p>all: {props.all}</p>
-			<p>average: {props.average}</p>
-			<p>positive: {props.positive}</p>
+			{props.all ? (
+				<>
+					<p>good: {props.good}</p>
+					<p>neutral: {props.neutral}</p>
+					<p>bad: {props.bad}</p>
+					<p>all: {props.all}</p>
+					<p>average: {props.average}</p>
+					<p>positive: {props.positive}</p>
+				</>
+			) : (
+				<h3>No feedback given</h3>
+			)}
 		</div>
 	);
 };
@@ -38,6 +44,7 @@ const App = () => {
 				<button onClick={handleNeutral}>neutral</button>
 				<button onClick={handleBad}>bad</button>
 			</div>
+
 			<Statistics
 				good={good}
 				neutral={neutral}
