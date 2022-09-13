@@ -1,73 +1,36 @@
 import { useState } from "react";
 
-const StatisticsLine = ({ text, value }) => {
-	return (
-		<tr>
-			<td>{text}</td>
-			<td>{value}</td>
-		</tr>
-	);
-};
-
-const Statistics = (props) => {
-	return (
-		<div>
-			<h2>Statistics</h2>
-			{props.all ? (
-				<table>
-					<tbody>
-						<StatisticsLine text="good" value={props.good} />
-						<StatisticsLine text="neutral" value={props.neutral} />
-						<StatisticsLine text="bad" value={props.bad} />
-						<StatisticsLine text="all" value={props.all} />
-						<StatisticsLine text="average" value={props.average} />
-						<StatisticsLine text="positive" value={props.positive} />
-					</tbody>
-				</table>
-			) : (
-				<h3>No feedback given</h3>
-			)}
-		</div>
-	);
-};
-
-const Button = ({ onClick, text }) => {
-	return <button onClick={onClick}>{text}</button>;
-};
+const anecdotes = [
+	"Adding manpower to a late software project makes it later!",
+	"The best way to get a project done faster is to start sooner.",
+	"The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+	"Even the best planning is not so omniscient as to get it right the first time.",
+	"How does a project get to be a year late?... One day at a time.",
+	"The bearing of a child takes nine months, no matter how many women are assigned. Many software tasks have this characteristic because of the sequential nature of debugging.",
+	"Plan to throw one (implementation) away; you will, anyhow.",
+	"Every good work of software starts by scratching a developers personal itch",
+	"Perfection (in design) is achieved not when there is nothing more to add, but rather when there is nothing more to take away.",
+	"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+	"Program testing can be used to show the presence of bugs, but never to show their absence!",
+];
 
 const App = () => {
-	const [good, setGood] = useState(0);
-	const [neutral, setNeutral] = useState(0);
-	const [bad, setBad] = useState(0);
+	const [selected, setSelected] = useState(0);
 
-	const handleGood = () => {
-		setGood(good + 1);
-	};
-
-	const handleNeutral = () => {
-		setNeutral(neutral + 1);
-	};
-	const handleBad = () => {
-		setBad(bad + 1);
+	const generatedRandomNumber = (maxAnecdotes) => () => {
+		const randomNum = Math.floor(Math.random() * maxAnecdotes);
+		setSelected(randomNum);
 	};
 
 	return (
 		<div>
-			<h1>Give your feedback</h1>
+			<h1>Anecdotes</h1>
 			<div>
-				<Button onClick={handleGood} text="Good" />
-				<Button onClick={handleNeutral} text="Neutral" />
-				<Button onClick={handleBad} text="Bad" />
+				<p>{anecdotes[selected]}</p>
 			</div>
-
-			<Statistics
-				good={good}
-				neutral={neutral}
-				bad={bad}
-				all={good + neutral + bad}
-				average={(good + neutral + bad) / 3}
-				positive={(good / (good + neutral + bad)) * 100}
-			/>
+			<div>
+				<button onClick={generatedRandomNumber(anecdotes.length)}>Next anecdote</button>
+			</div>
 		</div>
 	);
 };
