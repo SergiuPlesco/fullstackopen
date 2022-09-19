@@ -39,6 +39,12 @@ const App = () => {
 				<button onClick={voteForCurrentAnecdote(selected)}>vote</button>
 				<button onClick={generatedRandomNumber(anecdotes.length)}>Next anecdote</button>
 			</div>
+
+			<h1>Anecdote with the most votes</h1>
+			<div>
+				<p>{anecdotes[mostVotes]}</p>
+				<p>has {} votes</p>
+			</div>
 		</div>
 	);
 };
