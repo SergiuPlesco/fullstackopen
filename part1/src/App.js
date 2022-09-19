@@ -16,10 +16,7 @@ const anecdotes = [
 
 const App = () => {
 	const [selected, setSelected] = useState(0);
-	const [votes, setVotes] = useState(
-		new Array(anecdotes.length + 1).join(0).split("").map(parseFloat)
-		// new Array(anecdotes.length).fill(0)
-	);
+	const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
 
 	const generatedRandomNumber = (maxAnecdotes) => () => {
 		const randomNum = Math.floor(Math.random() * maxAnecdotes);
@@ -30,7 +27,6 @@ const App = () => {
 		votes[selected] += 1;
 
 		setVotes([...votes]);
-		console.log(votes);
 	};
 
 	return (
@@ -38,7 +34,6 @@ const App = () => {
 			<h1>Anecdotes</h1>
 			<div>
 				<p>{anecdotes[selected]}</p>
-				<p>has {votes[selected]} votes</p>
 			</div>
 			<div>
 				<button onClick={voteForCurrentAnecdote(selected)}>vote</button>
