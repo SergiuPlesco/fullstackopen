@@ -14,6 +14,11 @@ const anecdotes = [
 	"Program testing can be used to show the presence of bugs, but never to show their absence!",
 ];
 
+const Title = ({ title }) => <h1>{title}</h1>;
+const Anecdote = ({ anecdote }) => <p>{anecdote}</p>;
+const Votes = ({ votes }) => <p> Has {votes} votes</p>;
+const Button = ({ onClick, children }) => <button onClick={onClick}>{children}</button>;
+
 const App = () => {
 	const [selected, setSelected] = useState(0);
 	const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
@@ -25,19 +30,24 @@ const App = () => {
 
 	const voteForCurrentAnecdote = (selected) => () => {
 		votes[selected] += 1;
-
 		setVotes([...votes]);
 	};
 
 	return (
 		<div>
-			<h1>Anecdotes</h1>
 			<div>
-				<p>{anecdotes[selected]}</p>
+				<Title title="Anecdote of the day" />
+				<Anecdote anecdote={anecdotes[selected]} />
+				<Votes votes={votes[selected]} />
 			</div>
 			<div>
-				<button onClick={voteForCurrentAnecdote(selected)}>vote</button>
-				<button onClick={generatedRandomNumber(anecdotes.length)}>Next anecdote</button>
+				<Button onClick={voteForCurrentAnecdote(selected)}>vote</Button>
+				<Button onClick={generatedRandomNumber(anecdotes.length)}>Next anecdote</Button>
+			</div>
+			<div>
+				<Title title="Anecdote with the most votes" />
+				<Anecdote anecdote={anecdotes[votes.indexOf(Math.max(...votes))]} />
+				<Votes votes={Math.max(...votes)} />
 			</div>
 		</div>
 	);
